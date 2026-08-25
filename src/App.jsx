@@ -1,0 +1,43 @@
+
+import { useState } from 'react'
+import './App.css'
+import { Routes, Route } from 'react-router';
+
+import SignUpForm from './pages/SignUpForm';
+import SignInForm from './pages/SignInForm';
+import Landing from './pages/Landing';
+import Dashboard from './pages/Dashboard';
+import Nav from './components/Nav'
+
+const getUserFromToken = () => {
+  const token = localStorage.getItem('token')
+  if(!token) return null 
+   return JSON.parse(atob(token.split('.')[1])).payload
+ }
+
+const App = () => {
+  
+  const [user, setUser] = useState(getUserFromToken())
+ 
+
+  return (
+    <div>
+      <Nav user={user} setUser={setUser}/>
+
+      <main className="app-main">
+      <Routes>
+
+      // in there is user signed go to dashboard else to landing
+      <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
+
+        <Route path='/sign-up' element={<SignUpForm setUser={setUser}/>} />
+
+        <Route path='/sign-in' element={<SignInForm setUser={setUser}/>}/>
+      </Routes>
+      </main>
+    </div>
+  );
+};
+
+export default App
+
