@@ -29,6 +29,21 @@ const PostzDetail = (props) => {
         setPostz({...postz, comments: [...postz.comments, newComment]})
     }
 
+    const handleDeleteComment = async (commentId) => {
+  try {
+    await commentsServices.deleteComment(postId, commentId)
+    
+    const filteredComments = postz.comments.filter((comment) => {
+      return comment.id !== commentId
+    })
+
+    setPostz({ ...postz, comments: filteredComments })
+
+  } catch (err) {
+    console.error('Error deleting comment:', err)
+  }
+}
+
 
 
     if (!postz) return(
@@ -66,9 +81,18 @@ const PostzDetail = (props) => {
             <section className='commentSection'>
                 <h3>{ postz.comments?.length} 💬</h3>
                 {postz.comments.map((comment) => (
+                    < >
                     <div className='ShowComments'>
                         <span>👤{comment.author?.username}: </span> <span>{comment.text}</span>
-                    </div>
+                        </div>
+
+                        <div className='deleteComment'>
+                    {props.user._id === comment.author._id ? (
+                        <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                    ) : ('') 
+                }
+                </div>
+                </>
                 ))}
 
             </section>
