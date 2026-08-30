@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard';
 import Nav from './components/Nav'
 import PostzList from './pages/PostzList';
 import PostzDetail from './pages/PostzDetail';
+import PostzNew from './pages/PostzNew';
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -20,7 +21,7 @@ const getUserFromToken = () => {
  }
 
 const App = () => {
-  
+  const navigate = useNavigate()
   
   const [user, setUser] = useState(getUserFromToken())
   const [postz, setPostz] = useState([])
@@ -33,11 +34,26 @@ const App = () => {
     if (user) fetchAllPostz()
   }, [user])
 
-  const handleDeletePost = async (postId) => {
-    const deletedPost = await hootService.deleteHoot(postId)
-    setPostz(postz.filter((post) => post._id !== postId))
+  const handleAddPost = async (formData) => {
+    const newpost = await postzServices.create(formData)
+    setPostz([newpost, ...postz])
     navigate('/postz')
   }
+
+  const handleDeletePost = async (postId) => {
+  try {
+    await postzServices.deletePostz(postId)
+
+    const filteredPostz = postz.filter((post) => {
+      return post.id !== postId
+    })
+
+    setPostz(filteredPostz)
+    navigate('/postz')
+  } catch (err) {
+    console.error('Error deleting post:', err)
+  }
+}
  
 
   return (
@@ -53,6 +69,7 @@ const App = () => {
         <>
         <Route path='/postz' element={<PostzList postz={postz}/>}/>
         <Route path='/postz/:postId' element={ <PostzDetail user={user} handleDeletePost={handleDeletePost}/>}/>
+        <Route path='/postz/new' element={<PostzNew handleAddPost={handleAddPost}/>}/>
         </>
       ) : ( 
         <>

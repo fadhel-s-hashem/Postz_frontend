@@ -44,7 +44,7 @@ const PostzDetail = (props) => {
                 </p>
 
                 {postz.author._id === props.user._id? (
-                    <button onClick={props.handleDeletePost(postId)}>delete Postz</button>
+                    <button onClick={() => props.handleDeletePost(postId)}>delete Postz</button>
                 ):('')}
             </article>
             

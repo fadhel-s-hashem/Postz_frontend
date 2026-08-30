@@ -12,7 +12,7 @@ const Nav = (props) => {
 
   return (
         <nav>
-            <Link className="nav-brand" to="/">App Name</Link>
+            <Link className="nav-brand" to="/">Post<span>z</span> </Link>
             { props.user ? (
                 <ul>
                     <li>Welcome, {props.user.username}!</li>

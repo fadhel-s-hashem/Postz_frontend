@@ -1,0 +1,82 @@
+import { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate, Link } from 'react-router'
+import { useParams } from 'react-router'
+
+const PostzNew = (props) => {
+
+    const { postId } = useParams()
+    const initialState = {
+    title: '',
+    text: '' ,
+    category: 'News',
+  }
+
+  const [formData, setFormData] =useState(initialState)
+
+  useEffect(() => {
+    const fetchPost =async () => {
+      const postData= await postzServices.show(postId)
+      setFormData(postData)
+    }
+    if (postId) fetchPost()
+
+    return () => setFormData(initialState)
+  }, [postId])
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+      props.handleAddPost(formData)
+  }
+
+    return(
+        <main>
+            <h2>Add New Post</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="title-input">Title</label>
+        <input
+          required
+          type="text"
+          name="title"
+          id="title-input"
+          value={formData.title}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="text-input">Text</label>
+        <textarea
+          required
+          name="text"
+          id="text-input"
+          value={formData.text}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="category-input">Category</label>
+        <select
+          required
+          name="category"
+          id="category-input"
+          value={formData.category}
+          onChange={handleChange}
+        >
+          <option value="News">News</option>
+          <option value="Sports">Sports</option>
+          <option value="Games">Games</option>
+          <option value="Movies/shows">Movies/shows</option>
+          <option value="Music">Music</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <button type="submit">SUBMIT</button>
+      </form>
+
+        </main>
+
+    )
+}
+
+export default PostzNew
