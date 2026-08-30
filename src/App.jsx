@@ -36,7 +36,7 @@ const App = () => {
   return (
     <div>
       <Nav user={user} setUser={setUser}/>
-      <PostzList/>
+      
       <main className="app-main">
       <Routes>
 
@@ -44,6 +44,7 @@ const App = () => {
       <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
       {user? (
         <>
+        <Route path='/postz' element={<PostzList postz={postz}/>}/>
         
         </>
       ) : ( 
@@ -53,7 +54,7 @@ const App = () => {
         </>
       )}
 
-       
+       <Route path="*" element={<h2>Page Not Found 👎</h2>} />
       </Routes>
       </main>
     </div>
