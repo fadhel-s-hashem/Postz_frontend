@@ -57,10 +57,10 @@ const App = () => {
 
 const handleUpdatePostz = async (postId, formData) => {
     const updatedPost = await postzServices.update(postId, formData)
-    const updatedPostzList = hoots.map((post) => {
+    const updatedPostzList = postz.map((post) => {
       return postId === post._id ? updatedPost : post
     })
-    setHoots(updatedPostzList)
+    setPostz(updatedPostzList)
     navigate(`/postz/${postId}`)
   }
 

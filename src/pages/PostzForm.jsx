@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Link } from 'react-router'
 import { useParams } from 'react-router'
+import * as postzServices from '../services/postzServices'
 
 const PostzForm = (props) => {
 
@@ -13,6 +14,16 @@ const PostzForm = (props) => {
 
   const [formData, setFormData] =useState(initialState)
 
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+      !postId ? (props.handleAddPost(formData)) : (props.handleUpdatePostz(postId, formData))
+  }
+
   useEffect(() => {
     const fetchPost =async () => {
       const postData= await postzServices.show(postId)
@@ -22,17 +33,6 @@ const PostzForm = (props) => {
 
     return () => setFormData(initialState)
   }, [postId])
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-      !postId ? (props.handleAddPost(formData)) : (props.handleUpdatePostz(postId, formData))
-    
-
-  }
 
     return(
         <main>
