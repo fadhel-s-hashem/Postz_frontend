@@ -11,12 +11,14 @@ const PostzList = (props) => {
                 <p className="postz-author">Posted by {post.author?.username || 'Unknown user'}</p>
                 <p className="postzText">{post.text}</p>
 
+                <footer>
                 <span>
                     {new Date(post.createdAt).toLocaleDateString()}
                 </span>
                 <span>
                     {post.comments?.length || 0} comments
                 </span>
+                </footer>
                 <hr />
             </article>
            ))}
