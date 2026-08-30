@@ -71,7 +71,7 @@ const handleUpdatePostz = async (postId, formData) => {
   return (
     <div>
       <Nav user={user} setUser={setUser}/>
-      
+      <CommentForm/>
       <main className="app-main">
       <Routes>
 
