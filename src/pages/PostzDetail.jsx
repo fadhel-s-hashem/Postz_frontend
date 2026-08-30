@@ -3,6 +3,9 @@ import { Routes, Route, useNavigate } from 'react-router'
 import { useParams } from 'react-router'
 
 import * as postzServices from '../services/postzServices'
+import * as commentsServices from '../services/comments'
+
+import CommentForm from '../components/CommentForm'
 
 
 const PostzDetail = (props) => {
@@ -20,6 +23,12 @@ const PostzDetail = (props) => {
         fetchPostz()
     }, [postId])
 
+    const handleAddComment = async (formData) => {
+        const newComment = await commentsService.create(postId, formData)
+
+        setPostz({...postz, comments: [...postz.comments, newComment]})
+    }
+
 
 
     if (!postz) return(
@@ -34,6 +43,7 @@ const PostzDetail = (props) => {
     return(
         <main>
             <h1>Postz Detail</h1>
+      <CommentForm handleAddComment={handleAddComment}/>
 
             <article>
                 <h2 className='PostTitle'>{postz.title}</h2>

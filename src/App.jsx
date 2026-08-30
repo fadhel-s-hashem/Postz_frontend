@@ -14,7 +14,6 @@ import Nav from './components/Nav'
 import PostzList from './pages/PostzList';
 import PostzDetail from './pages/PostzDetail';
 import PostzForm from './pages/PostzForm';
-import CommentForm from './components/CommentForm';
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -71,7 +70,6 @@ const handleUpdatePostz = async (postId, formData) => {
   return (
     <div>
       <Nav user={user} setUser={setUser}/>
-      <CommentForm/>
       <main className="app-main">
       <Routes>
 
