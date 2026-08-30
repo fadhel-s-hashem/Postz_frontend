@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
 
 import * as postzServices from './services/postzServices'
+import * as commentsServices from './services/comments'
 
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
@@ -13,6 +14,7 @@ import Nav from './components/Nav'
 import PostzList from './pages/PostzList';
 import PostzDetail from './pages/PostzDetail';
 import PostzForm from './pages/PostzForm';
+import CommentForm from './components/CommentForm';
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')

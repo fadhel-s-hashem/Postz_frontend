@@ -32,7 +32,7 @@ const PostzDetail = (props) => {
 
 
     return(
-        <section>
+        <main>
             <h1>Postz Detail</h1>
 
             <article>
@@ -52,9 +52,19 @@ const PostzDetail = (props) => {
                     </div>
                 ):('')}
             </article>
+
+            <section className='commentSection'>
+                <h3>{ postz.comments?.length}</h3>
+                {postz.comments.map((comment) => (
+                    <div className='ShowComments'>
+                        <span>👤{comment.author?.username}: </span> <span>{comment.text}</span>
+                    </div>
+                ))}
+
+            </section>
             
 
-        </section>
+        </main>
     )
 }
 
