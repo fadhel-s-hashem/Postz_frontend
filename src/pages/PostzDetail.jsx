@@ -24,7 +24,7 @@ const PostzDetail = (props) => {
     }, [postId])
 
     const handleAddComment = async (formData) => {
-        const newComment = await commentsService.create(postId, formData)
+        const newComment = await commentsServices.create(postId, formData)
 
         setPostz({...postz, comments: [...postz.comments, newComment]})
     }
@@ -64,7 +64,7 @@ const PostzDetail = (props) => {
             </article>
 
             <section className='commentSection'>
-                <h3>{ postz.comments?.length}</h3>
+                <h3>{ postz.comments?.length} 💬</h3>
                 {postz.comments.map((comment) => (
                     <div className='ShowComments'>
                         <span>👤{comment.author?.username}: </span> <span>{comment.text}</span>

@@ -21,6 +21,9 @@ const CommentForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        props.handleAddComment(formData)
+        setFormData(initialState)
+
     }
 
 
