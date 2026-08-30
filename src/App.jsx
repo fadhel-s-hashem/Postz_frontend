@@ -1,13 +1,16 @@
 
-import { useState } from 'react'
 import './App.css'
-import { Routes, Route } from 'react-router';
+import { Routes, Route, useNavigate } from "react-router"
+import { useState, useEffect } from "react"
+
+import * as postzServices from './services/postzServices'
 
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import Nav from './components/Nav'
+import PostzList from './pages/PostzList';
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -17,22 +20,40 @@ const getUserFromToken = () => {
 
 const App = () => {
   
+  
   const [user, setUser] = useState(getUserFromToken())
+  const [postz, setPostz] = useState([])
+
+  useEffect(() => {
+    const fetchAllPostz = async () => {
+      const postzData = await postzServices.index()
+      setPostz(postzData)
+    }
+    if (user) fetchAllPostz()
+  }, [user])
  
 
   return (
     <div>
       <Nav user={user} setUser={setUser}/>
-
+      <PostzList/>
       <main className="app-main">
       <Routes>
 
-      // in there is user signed go to dashboard else to landing
+      {/* // is there is user signed go to dashboard else to landing */}
       <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
-
+      {user? (
+        <>
+        
+        </>
+      ) : ( 
+        <>
         <Route path='/sign-up' element={<SignUpForm setUser={setUser}/>} />
-
         <Route path='/sign-in' element={<SignInForm setUser={setUser}/>}/>
+        </>
+      )}
+
+       
       </Routes>
       </main>
     </div>
