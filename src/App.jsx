@@ -55,6 +55,15 @@ const App = () => {
   }
 }
 
+const handleUpdatePostz = async (postId, formData) => {
+    const updatedPost = await postzServices.update(postId, formData)
+    const updatedPostzList = hoots.map((post) => {
+      return postId === post._id ? updatedPost : post
+    })
+    setHoots(updatedPostzList)
+    navigate(`/postz/${postId}`)
+  }
+
  
 
   return (
@@ -71,6 +80,7 @@ const App = () => {
         <Route path='/postz' element={<PostzList postz={postz}/>}/>
         <Route path='/postz/:postId' element={ <PostzDetail user={user} handleDeletePost={handleDeletePost}/>}/>
         <Route path='/postz/new' element={<PostzForm handleAddPost={handleAddPost}/>}/>
+        <Route path="/postz/:postId/edit" element={<PostzForm handleUpdatePostz={handleUpdatePostz} />}/>
         
         </>
       ) : ( 
