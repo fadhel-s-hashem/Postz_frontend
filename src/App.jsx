@@ -32,6 +32,12 @@ const App = () => {
     }
     if (user) fetchAllPostz()
   }, [user])
+
+  const handleDeletePost = async (postId) => {
+    const deletedPost = await hootService.deleteHoot(postId)
+    setPostz(postz.filter((post) => post._id !== postId))
+    navigate('/postz')
+  }
  
 
   return (
@@ -46,8 +52,7 @@ const App = () => {
       {user? (
         <>
         <Route path='/postz' element={<PostzList postz={postz}/>}/>
-     
-        <Route path='/postz/:postId' element={ <PostzDetail user={user}/>}/>
+        <Route path='/postz/:postId' element={ <PostzDetail user={user} handleDeletePost={handleDeletePost}/>}/>
         </>
       ) : ( 
         <>

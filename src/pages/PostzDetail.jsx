@@ -5,7 +5,7 @@ import { useParams } from 'react-router'
 import * as postzServices from '../services/postzServices'
 
 
-const PostzDetail = () => {
+const PostzDetail = (props) => {
     const navigate = useNavigate()
     const { postId } = useParams()
 
@@ -40,7 +40,12 @@ const PostzDetail = () => {
                 <p className="postzText">{postz.text}</p>
                 <p><span className='postDate'>
                     {new Date(postz.createdAt).toLocaleDateString()}
-                </span></p>
+                </span>
+                </p>
+
+                {postz.author._id === props.user._id? (
+                    <button onClick={props.handleDeletePost(postId)}>delete Postz</button>
+                ):('')}
             </article>
             
 
