@@ -11,6 +11,7 @@ import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import Nav from './components/Nav'
 import PostzList from './pages/PostzList';
+import PostzDetail from './pages/PostzDetail';
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -45,7 +46,8 @@ const App = () => {
       {user? (
         <>
         <Route path='/postz' element={<PostzList postz={postz}/>}/>
-        
+     
+        <Route path='/postz/:postId' element={ <PostzDetail user={user}/>}/>
         </>
       ) : ( 
         <>

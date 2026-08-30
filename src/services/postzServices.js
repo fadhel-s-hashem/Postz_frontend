@@ -71,8 +71,6 @@ const deletePostz = async (postId) => {
 export{
   index,
   show,
-  index,
-  show,
   create,
   update,
   deletePostz,
