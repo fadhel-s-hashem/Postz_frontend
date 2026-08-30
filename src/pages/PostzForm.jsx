@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Link } from 'react-router'
 import { useParams } from 'react-router'
 
-const PostzNew = (props) => {
+const PostzForm = (props) => {
 
     const { postId } = useParams()
     const initialState = {
@@ -29,12 +29,14 @@ const PostzNew = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-      props.handleAddPost(formData)
+      !postId ? (props.handleAddPost(formData)) : (props.handleUpdatePostz(postId, formData))
+    
+
   }
 
     return(
         <main>
-            <h2>Add New Post</h2>
+            <h2>{postId ? "Edit post" : "Add New post"}</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title-input">Title</label>
         <input
@@ -71,7 +73,7 @@ const PostzNew = (props) => {
           <option value="Other">Other</option>
         </select>
 
-        <button type="submit">SUBMIT</button>
+        <button type="submit">{!postId ? ("Create post"):("Edit Post") }</button>
       </form>
 
         </main>
@@ -79,4 +81,4 @@ const PostzNew = (props) => {
     )
 }
 
-export default PostzNew
+export default PostzForm

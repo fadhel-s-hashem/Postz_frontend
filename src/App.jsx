@@ -12,7 +12,7 @@ import Dashboard from './pages/Dashboard';
 import Nav from './components/Nav'
 import PostzList from './pages/PostzList';
 import PostzDetail from './pages/PostzDetail';
-import PostzNew from './pages/PostzNew';
+import PostzForm from './pages/PostzForm';
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -54,6 +54,7 @@ const App = () => {
     console.error('Error deleting post:', err)
   }
 }
+
  
 
   return (
@@ -69,7 +70,8 @@ const App = () => {
         <>
         <Route path='/postz' element={<PostzList postz={postz}/>}/>
         <Route path='/postz/:postId' element={ <PostzDetail user={user} handleDeletePost={handleDeletePost}/>}/>
-        <Route path='/postz/new' element={<PostzNew handleAddPost={handleAddPost}/>}/>
+        <Route path='/postz/new' element={<PostzForm handleAddPost={handleAddPost}/>}/>
+        
         </>
       ) : ( 
         <>

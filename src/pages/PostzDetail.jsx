@@ -10,6 +10,7 @@ const PostzDetail = (props) => {
     const { postId } = useParams()
 
     const [postz, setPostz] = useState(null)
+    
 
     useEffect(() => {
         const fetchPostz = async () => {
