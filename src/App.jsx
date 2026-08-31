@@ -46,7 +46,7 @@ const App = () => {
     await postzServices.deletePostz(postId)
 
     const filteredPostz = postz.filter((post) => {
-      return post.id !== postId
+      return post._id !== postId
     })
 
     setPostz(filteredPostz)
