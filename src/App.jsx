@@ -70,10 +70,10 @@ const handleUpdatePostz = async (postId, formData) => {
   return (
     <div>
       <Nav user={user} setUser={setUser}/>
+      
       <main className="app-main">
       <Routes>
 
-      {/* // is there is user signed go to dashboard else to landing */}
       <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
       {user? (
         <>

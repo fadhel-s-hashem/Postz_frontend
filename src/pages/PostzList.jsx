@@ -23,7 +23,7 @@ const PostzList = (props) => {
                     {new Date(post.createdAt).toLocaleDateString()}
                 </span>
                 <span>
-                    {post.comments?.length || 0} comments
+                    -{post.comments?.length} comments
                 </span>
                 </section>
                 <hr/>

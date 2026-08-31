@@ -7,6 +7,8 @@ import * as commentsServices from '../services/comments'
 
 import CommentForm from '../components/CommentForm'
 
+import person from "../assets/person.svg"
+
 
 const PostzDetail = (props) => {
     const navigate = useNavigate()
@@ -82,10 +84,10 @@ const PostzDetail = (props) => {
                 {postz.comments.map((comment) => (
                     < >
                     <div className='ShowComments'>
-                        <span>👤{comment.author?.username}: </span> <span>{comment.text}</span>
+                        <span><img src={person} alt="person icon" />{comment.author?.username}: </span> <span>{comment.text}</span>
                         </div>
 
-                        <div className='deleteComment'>
+                        <div className='btn btn-soft btn-error deleteComment'>
                     {props.user._id === comment.author._id ? (
                         <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
                     ) : ('') 
