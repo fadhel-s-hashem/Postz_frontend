@@ -32,13 +32,12 @@ const PostzDetail = (props) => {
     const handleDeleteComment = async (commentId) => {
   try {
     await commentsServices.deleteComment(postId, commentId)
-    
+
     const filteredComments = postz.comments.filter((comment) => {
-      return comment.id !== commentId
+      return comment._id !== commentId
     })
 
     setPostz({ ...postz, comments: filteredComments })
-
   } catch (err) {
     console.error('Error deleting comment:', err)
   }
@@ -48,8 +47,8 @@ const PostzDetail = (props) => {
 
     if (!postz) return(
     <main>
-        <div class="spinner">
-        <div class="spinner1"></div>
+        <div className="spinner">
+        <div className="spinner1"></div>
         </div>
     </main>
 ) 
