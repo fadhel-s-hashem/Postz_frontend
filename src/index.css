@@ -244,12 +244,12 @@ article {
 }
 
 .actions button:first-child {
-  background-color: #dc3545;
+  background-color: #dd1f32;
   color: #ffffff;
 }
 
 .actions button:first-child:hover {
-  background-color: #bb2d3b;
+  background-color: #c32938;
 }
 
 .actions button:last-child {
