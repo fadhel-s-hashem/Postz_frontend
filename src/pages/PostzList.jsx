@@ -23,13 +23,14 @@ const PostzList = (props) => {
     const { postId } = useParams()
 
     return (
-        <main className=" mainList container my-4">
+        <main className=" container my-4">
             <h1 className="mb-4 text-center fw-bold text-primary">All Post<span className='Z'>Z</span></h1>
             <section className='d-flex flex-column gap-3' >
                 {props.postz.map((post) => (
                     <Link to={`/postz/${post._id}`} className="text-decoration-none text-dark w-100 d-flex justify-content-center">
-                        <div className="card mb-3 w-100 shadow-sm hover-shadow transition">
+                        <div className=" postzCard card mb-3 w-100 ">
                             <div className="row g-0 align-items-center">
+
                                 <div className="col-md-4 d-flex justify-content-center align-items-center p-3">
                                     <img
                                         src={categoryImages[post.category] || Other}
@@ -37,8 +38,10 @@ const PostzList = (props) => {
                                         alt={`${post.category} icon`}
                                     />
                                 </div>
+
                                 <div className="col-md-8">
                                     <div className="card-body">
+
                                         <div className="d-flex justify-content-between align-items-start mb-2">
                                             <h3 className="card-title text-primary fw-bold mb-0">{post.title}</h3>
                                             <span className="badge bg-primary rounded-pill">{post.category}</span>
@@ -47,7 +50,6 @@ const PostzList = (props) => {
                                         <p className="card-subtitle text-muted small mb-2">
                                             Posted by <span className="fw-semibold">{post.author?.username || 'Unknown user'}</span>
                                         </p>
-
                                         <p className="card-text text-secondary">{post.text}</p>
 
                                         <div className="d-flex justify-content-between align-items-center pt-2 border-top mt-2">
@@ -60,6 +62,7 @@ const PostzList = (props) => {
                                                 💬 {post.comments?.length} comments
                                             </span>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

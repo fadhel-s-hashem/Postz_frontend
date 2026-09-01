@@ -181,8 +181,10 @@ background: linear-gradient(135deg, #0d6efd 0%, #20c997 100%);
   display: inline-block;
 }
 
-.mainList{
-  max-width: 900px;
+.postzCard{
+  max-width: 700px;
+  padding-right: 25px;
+  padding-left: 25px;
 }
 
 article {
@@ -197,7 +199,8 @@ article {
 
 .categoryImages{
   object-fit: contain;
-  background-color: #e0e7ff;
+  border: #053378 solid;
+  border-radius: 10px;
 }
 
 .PostTitle {
@@ -345,3 +348,19 @@ article {
   border-color: var(--color-error, #dc2626);
 }
 
+.postzForm{
+  max-width: 650px;
+}
+
+.card {
+  border-radius: 12px;
+  background-color: var(--color-surface, #ffffff);
+}
+
+.form-control,
+.form-select {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border, #d1d5db);
+  font-family: inherit;
+}

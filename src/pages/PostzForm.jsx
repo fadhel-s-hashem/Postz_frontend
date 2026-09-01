@@ -5,14 +5,14 @@ import * as postzServices from '../services/postzServices'
 
 const PostzForm = (props) => {
 
-    const { postId } = useParams()
-    const initialState = {
+  const { postId } = useParams()
+  const initialState = {
     title: '',
-    text: '' ,
+    text: '',
     category: 'News',
   }
 
-  const [formData, setFormData] =useState(initialState)
+  const [formData, setFormData] = useState(initialState)
 
 
   const handleChange = (e) => {
@@ -21,12 +21,12 @@ const PostzForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-      !postId ? (props.handleAddPost(formData)) : (props.handleUpdatePostz(postId, formData))
+    !postId ? (props.handleAddPost(formData)) : (props.handleUpdatePostz(postId, formData))
   }
 
   useEffect(() => {
-    const fetchPost =async () => {
-      const postData= await postzServices.show(postId)
+    const fetchPost = async () => {
+      const postData = await postzServices.show(postId)
       setFormData(postData)
     }
     if (postId) fetchPost()
@@ -34,51 +34,83 @@ const PostzForm = (props) => {
     return () => setFormData(initialState)
   }, [postId])
 
-    return(
-        <main>
-            <h2>{postId ? "Edit post" : "Add New post"}</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title-input">Title</label>
-        <input
-          required
-          type="text"
-          name="title"
-          id="title-input"
-          value={formData.title}
-          onChange={handleChange}
-        />
+  return (
+    <main>
 
-        <label>Text</label>
-        <textarea
-          required
-          name="text"
-          id="text-input"
-          value={formData.text}
-          onChange={handleChange}
-        />
+      <div className=" postzForm card shadow-sm border-0 ">
+        <div className="card-body p-4 p-md-5">
 
-        <label>Category</label>
-        <select
-          required
-          name="category"
-          id="category-input"
-          value={formData.category}
-          onChange={handleChange}
-        >
-          <option value="News">News</option>
-          <option value="Sports">Sports</option>
-          <option value="Games">Games</option>
-          <option value="Movies-shows">Movies-shows</option>
-          <option value="Music">Music</option>
-          <option value="Other">Other</option>
-        </select>
+          <h2 className="text-primary fw-bold text-center">
+            {postId ? 'Edit Post' : 'Add New Post'}
+          </h2>
 
-        <button type="submit">{!postId ? ("Create post"):("Edit Post") }</button>
-      </form>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label className=" text-primary form-label fw-semibold">
+                Title
+              </label>
+              <input
+                required
+                type="text"
+                className="form-control"
+                name="title"
+                id="title-input"
+                placeholder="Add title"
+                value={formData.title}
+                onChange={handleChange}
+              />
+            </div>
 
-        </main>
+            <div className=" mb-3">
+              <label className="text-primary form-label fw-semibold">
+                Category
+              </label>
+              <select
+                required
+                className="form-select"
+                name="category"
+                id="category-input"
+                value={formData.category}
+                onChange={handleChange}
+              >
+                <option value="News">News</option>
+                <option value="Sports">Sports</option>
+                <option value="Games">Games</option>
+                <option value="Movies-shows">Movies-shows</option>
+                <option value="Music">Music</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
 
-    )
+            <div className="mb-4">
+              <label className=" text-primary form-label fw-semibold">
+                Text
+              </label>
+              <textarea
+                required
+                className="form-control"
+                name="text"
+                id="text-input"
+                rows="5"
+                placeholder="Write your post content..."
+                value={formData.text}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="d-flex gap-2">
+
+              <button type="submit" className="btn btn-primary w-100 py-2 fw-bold">
+                {postId ? 'Save Changes' : 'Create Post'}
+              </button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+  )
 }
 
 export default PostzForm
