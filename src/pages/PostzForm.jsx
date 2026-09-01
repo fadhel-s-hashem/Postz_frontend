@@ -48,7 +48,7 @@ const PostzForm = (props) => {
           onChange={handleChange}
         />
 
-        <label htmlFor="text-input">Text</label>
+        <label>Text</label>
         <textarea
           required
           name="text"
@@ -57,7 +57,7 @@ const PostzForm = (props) => {
           onChange={handleChange}
         />
 
-        <label htmlFor="category-input">Category</label>
+        <label>Category</label>
         <select
           required
           name="category"
@@ -68,7 +68,7 @@ const PostzForm = (props) => {
           <option value="News">News</option>
           <option value="Sports">Sports</option>
           <option value="Games">Games</option>
-          <option value="Movies/shows">Movies/shows</option>
+          <option value="Movies-shows">Movies-shows</option>
           <option value="Music">Music</option>
           <option value="Other">Other</option>
         </select>
