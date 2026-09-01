@@ -58,11 +58,9 @@ const PostzDetail = (props) => {
 
     return(
         <main>
-            <h1>Postz Detail</h1>
-      <CommentForm handleAddComment={handleAddComment}/>
 
             <article>
-                <h2 className='PostTitle'>{postz.title}</h2>
+                <h2 className='PostTitle card-title text-primary fw-bold'>{postz.title}</h2>
                 <p className="postz-author">Posted by {postz.author?.username || 'Unknown user'}</p>
                 <p className="postzText">{postz.text}</p>
                 <p><span className='postDate'>
@@ -81,20 +79,28 @@ const PostzDetail = (props) => {
 
             <section className='commentSection'>
                 <h3>{ postz.comments?.length} 💬</h3>
-                {postz.comments.map((comment) => (
-                    < >
-                    <div className='ShowComments'>
-                        <span><img src={person} alt="person icon" />{comment.author?.username}: </span> <span>{comment.text}</span>
-                        </div>
 
-                        <div className='btn btn-soft btn-error deleteComment'>
-                    {props.user._id === comment.author._id ? (
-                        <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-                    ) : ('') 
-                }
-                </div>
-                </>
-                ))}
+               {postz.comments.map((comment) => (
+    <div className='ShowComments'>
+      <div className='commentContent'>
+        <div className='commentAuthorHeader'>
+          <img src={person} alt="person icon" />
+          <span className='authorName'>{comment.author?.username}:</span>
+        </div>
+        <p className='commentText'>{comment.text}</p>
+      </div>
+
+      {props.user._id === comment.author?._id && (
+        <button 
+          className='deleteCommentBtn' 
+          onClick={() => handleDeleteComment(comment._id)}
+        >
+          Delete
+        </button>
+      )}
+    </div>
+  ))}
+                <CommentForm handleAddComment={handleAddComment}/>
 
             </section>
             
