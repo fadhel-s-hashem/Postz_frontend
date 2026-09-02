@@ -2,6 +2,17 @@
 
 A modern full-stack web application built with a Django REST API backend by python language and a React (Vite) frontend with Bootstrap 5 styling. This platform allows registered users to create, view, edit, and filter post content across diverse categories (News, Sports, Games, Movies-shows, Music, and Other), engage through real-time comments, and manage their personal posts directly from a customized user dashboard.
 
+**Dashboard Screenshots**
+
+<img width="1920" height="869" alt="Screenshot 2026-09-02 192222" src="https://github.com/user-attachments/assets/01685685-4a46-44c2-9011-47a157d5d58c" />
+
+**All PostZ Screenshots**
+<img width="1920" height="872" alt="Screenshot 2026-09-02 193104" src="https://github.com/user-attachments/assets/3eb87f45-ed47-493d-b085-f252612909fb" />
+
+**PostZ foarm Screenshots**
+<img width="1920" height="886" alt="Screenshot 2026-09-02 192303" src="https://github.com/user-attachments/assets/7939943a-5449-4876-b5ee-0ddd0ef3b916" />
+
+
 
 ## Features
 
