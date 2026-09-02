@@ -51,6 +51,10 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-surface);
+  position: sticky;
+  top: 0;
+  border-bottom: rgb(187, 194, 201) solid 1px;
+  padding: 1px;
 }
 
 nav ul {
@@ -219,6 +223,7 @@ article {
 
 .postzText {
   font-size: 1.05rem;
+  font-weight: 400;
   line-height: 1.6;
   color: #333333;
   margin-bottom: 1.25rem;
@@ -321,7 +326,8 @@ article {
 
 
 .commentText {
-  color: #495057;
+  color: #1a1a1a;
+  font-weight: 500;
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.4;

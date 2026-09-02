@@ -120,7 +120,9 @@ const PostzDetail = (props) => {
                                 <span className='authorName'>{comment.author?.username}:</span>
                             </div>
                             <p className='commentText'>{comment.text}</p>
+                            <span>{new Date(comment.createdAt).toLocaleDateString()}</span>
                         </div>
+                                                    
 
                         {props.user._id === comment.author?._id && (
                             <button
