@@ -15,11 +15,11 @@ const signUp = async (formData) => {
     console.log(data);
     
 
-    // if there is an error in the response, throw error to catch
+
     if (data.err) {
       throw new Error(data.err)
     }
-// if we recieve a token back (success) store the token in the browser and return the payload (user data) to use somewhere else in our app
+
     
     if(data.token){
     console.log('there is a token')
@@ -37,7 +37,7 @@ const signUp = async (formData) => {
 const signIn = async (formData) => {
 
   try {
-    // makes a post request to the server
+
     const res = await fetch(`${BASE_URL}/auth/sign-in`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -48,11 +48,9 @@ const signIn = async (formData) => {
     console.log(data);
     
 
-    // if there is an error in the response, throw error to catch
     if (data.err) {
       throw new Error(data.err)
     }
-// if we recieve a token back (success) store the token in the browser and return the payload (user data) to use somewhere else in our app
     
     if(data.token){
     console.log('there is a token')

@@ -31,9 +31,9 @@ const PostzList = (props) => {
                         <div className=" postzCard card mb-3 w-100 ">
                             <div className="row g-0 align-items-center">
 
-                                <div className="col-md-4 d-flex justify-content-center align-items-center p-3">
+                                <div className="col-md-4 d-flex justify-content-center align-items-center ">
                                     <img
-                                        src={categoryImages[post.category] || Other}
+                                        src={categoryImages[post.category]}
                                         className="categoryImages object-fit-contain"
                                         alt={`${post.category} icon`}
                                     />
@@ -44,11 +44,11 @@ const PostzList = (props) => {
 
                                         <div className="d-flex justify-content-between align-items-start mb-2">
                                             <h3 className="card-title text-primary fw-bold mb-0">{post.title}</h3>
-                                            <span className="badge bg-primary rounded-pill">{post.category}</span>
                                         </div>
+                                         <p className="badge bg-primary rounded-pill">{post.category}</p>
 
                                         <p className="card-subtitle text-muted small mb-2">
-                                            Posted by <span className="fw-semibold">{post.author?.username || 'Unknown user'}</span>
+                                            Posted by <span className="fw-bold">{post.author?.username || 'Unknown user'}</span>
                                         </p>
                                         <p className="card-text text-secondary">{post.text}</p>
 

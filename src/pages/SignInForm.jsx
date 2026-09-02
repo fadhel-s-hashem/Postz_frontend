@@ -35,7 +35,7 @@ const SignInForm = (props) => {
         <section className="card">
             <header>
             <h1>Sign In</h1>
-            <p className="error">{message}</p>
+            {message? (<p className="alert alert-danger text-center">{message}</p>):('')}
             </header>
 
             <form onSubmit={handleSubmit}>

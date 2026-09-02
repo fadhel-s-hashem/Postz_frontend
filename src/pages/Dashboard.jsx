@@ -48,10 +48,10 @@ const Dashboard = (props) => {
         <h4 className="text-muted">Manage and view your created <span className='text-primary fw-bold'>Post</span><span className="Z fw-bold">Z</span></h4>
       </div>
 
-      {message && <p className="alert alert-danger text-center">{message}</p>}
+      {message? (<p className="alert alert-danger text-center">{message}</p>):('')}
 
       <section className="d-flex flex-column gap-3">
-        <h2 className="h4 fw-bold mb-3">Your{" "}
+        <h2 className=" YourPostz h4 fw-bold mb-3">Your{" "}
           <span className='text-primary fw-bold'>Post</span>
           <span className="Z fw-bold">Z({userPostz.length})</span>
 
@@ -80,7 +80,7 @@ const Dashboard = (props) => {
 
                   <div className="col-md-4 d-flex justify-content-center align-items-center p-3">
                     <img
-                      src={categoryImages[post.category] || Other}
+                      src={categoryImages[post.category]}
                       className="categoryImages object-fit-contain"
                       alt={`${post.category} icon`}
                     />
@@ -91,11 +91,12 @@ const Dashboard = (props) => {
 
                       <div className="d-flex justify-content-between align-items-start mb-2">
                         <h3 className="card-title text-primary fw-bold mb-0">{post.title}</h3>
-                        <span className="badge bg-primary rounded-pill">{post.category}</span>
                       </div>
 
+                      <p className="badge bg-primary rounded-pill">{post.category}</p>
+
                       <p className="card-subtitle text-muted small mb-2">
-                        Posted by <span className="fw-semibold">{post.author?.username || 'Unknown user'}</span>
+                        Posted by <span className="fw-bold">{post.author?.username || 'Unknown user'}</span>
                       </p>
                       <p className="card-text text-secondary">{post.text}</p>
 

@@ -46,7 +46,7 @@ const isFormValid = () => {
         <section className='card'>
             <header>
             <h1>sign up</h1>
-            <p className="error">{message}</p>
+            {message? (<p className="alert-danger text-center">{message}</p>):('')}
             </header>
             <form onSubmit={handleSubmit}>
                 Username:
@@ -61,7 +61,6 @@ const isFormValid = () => {
                 
                 <div className='actions'>
                 <button type='submit' disabled={!isFormValid()}>Sign Up</button>
-                <button type='submit'> Cancel </button>
                 </div>
             </form>
 
