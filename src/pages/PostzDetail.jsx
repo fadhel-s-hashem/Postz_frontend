@@ -70,7 +70,39 @@ const PostzDetail = (props) => {
 
                 {postz.author._id === props.user._id ? (
                     <div className='actions actionsDelete'>
-                        <button onClick={() => props.handleDeletePost(postId)}>delete</button>
+                        <button
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            type="button"
+                        >Delete</button>
+
+                        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="deleteModal modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title fw-bold " id="exampleModalLabel">Confirm Delete</h5>
+                                        
+                                    </div>
+
+                                    <div className="modal-body">
+                                        <p> Are you sure you want to delete this post? This action cannot be undone.</p>
+                                        
+                                    </div>
+
+                                    <div className="modal-footer">
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger"
+                                            onClick={() => props.handleDeletePost(postId)}
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Delete
+                                        </button>
+                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <button onClick={() => navigate(`/postz/${postId}/edit`)}>Edit</button>
                     </div>
