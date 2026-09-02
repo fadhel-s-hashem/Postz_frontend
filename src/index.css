@@ -176,6 +176,7 @@ h1, h2, h3, p {
 
 .Z{
 background: linear-gradient(135deg, #0d6efd 0%, #20c997 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -236,7 +237,7 @@ article {
   border-top: 1px solid #f0f0f0;
 }
 
-.actions button {
+.actionsDelete button {
   padding: 0.4rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -246,21 +247,21 @@ article {
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.actions button:first-child {
+.actionsDelete button:first-child {
   background-color: #dd1f32;
   color: #ffffff;
 }
 
-.actions button:first-child:hover {
+.actionsDelete button:first-child:hover {
   background-color: #c32938;
 }
 
-.actions button:last-child {
+.actionsDelete button:last-child {
   background-color: #6c757d;
   color: #ffffff;
 }
 
-.actions button:last-child:hover {
+.actionsDelete button:last-child:hover {
   background-color: #5c636a;
 }
 

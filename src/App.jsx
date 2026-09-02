@@ -2,6 +2,7 @@
 import './App.css'
 import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
+import { Link } from "react-router"
 
 import * as postzServices from './services/postzServices'
 import * as commentsServices from './services/comments'
@@ -17,13 +18,13 @@ import PostzForm from './pages/PostzForm';
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
-  if(!token) return null 
-   return JSON.parse(atob(token.split('.')[1])).payload
- }
+  if (!token) return null
+  return JSON.parse(atob(token.split('.')[1])).payload
+}
 
 const App = () => {
   const navigate = useNavigate()
-  
+
   const [user, setUser] = useState(getUserFromToken())
   const [postz, setPostz] = useState([])
 
@@ -42,21 +43,21 @@ const App = () => {
   }
 
   const handleDeletePost = async (postId) => {
-  try {
-    await postzServices.deletePostz(postId)
+    try {
+      await postzServices.deletePostz(postId)
 
-    const filteredPostz = postz.filter((post) => {
-      return post._id !== postId
-    })
+      const filteredPostz = postz.filter((post) => {
+        return post._id !== postId
+      })
 
-    setPostz(filteredPostz)
-    navigate('/postz')
-  } catch (err) {
-    console.error('Error deleting post:', err)
+      setPostz(filteredPostz)
+      navigate('/postz')
+    } catch (err) {
+      console.error('Error deleting post:', err)
+    }
   }
-}
 
-const handleUpdatePostz = async (postId, formData) => {
+  const handleUpdatePostz = async (postId, formData) => {
     const updatedPost = await postzServices.update(postId, formData)
     const updatedPostzList = postz.map((post) => {
       return postId === post._id ? updatedPost : post
@@ -65,33 +66,33 @@ const handleUpdatePostz = async (postId, formData) => {
     navigate(`/postz/${postId}`)
   }
 
- 
+
 
   return (
     <div>
-      <Nav user={user} setUser={setUser}/>
-      
+      <Nav user={user} setUser={setUser} />
+
       <main className="app-main">
-      <Routes>
+        <Routes>
 
-      <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
-      {user? (
-        <>
-        <Route path='/postz' element={<PostzList postz={postz}/>}/>
-        <Route path='/postz/:postId' element={ <PostzDetail user={user} handleDeletePost={handleDeletePost}/>}/>
-        <Route path='/postz/new' element={<PostzForm handleAddPost={handleAddPost}/>}/>
-        <Route path="/postz/:postId/edit" element={<PostzForm handleUpdatePostz={handleUpdatePostz} />}/>
-        
-        </>
-      ) : ( 
-        <>
-        <Route path='/sign-up' element={<SignUpForm setUser={setUser}/>} />
-        <Route path='/sign-in' element={<SignInForm setUser={setUser}/>}/>
-        </>
-      )}
+          <Route path='/' element={user ? <Dashboard user={user} postz={postz}/> : <Landing />} />
+          {user ? (
+            <>
+              <Route path='/postz' element={<PostzList postz={postz} />} />
+              <Route path='/postz/:postId' element={<PostzDetail user={user} handleDeletePost={handleDeletePost} />} />
+              <Route path='/postz/new' element={<PostzForm handleAddPost={handleAddPost} />} />
+              <Route path="/postz/:postId/edit" element={<PostzForm handleUpdatePostz={handleUpdatePostz} />} />
 
-       <Route path="*" element={<h2>Page Not Found 👎</h2>} />
-      </Routes>
+            </>
+          ) : (
+            <>
+              <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
+              <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
+            </>
+          )}
+
+          <Route path="*" element={<h2>Page Not Found <Link to="/">Return to home Page</Link></h2>} />
+        </Routes>
       </main>
     </div>
   );

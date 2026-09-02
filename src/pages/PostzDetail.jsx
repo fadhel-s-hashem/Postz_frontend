@@ -69,7 +69,7 @@ const PostzDetail = (props) => {
                 </p>
 
                 {postz.author._id === props.user._id ? (
-                    <div className='actions'>
+                    <div className='actions actionsDelete'>
                         <button onClick={() => props.handleDeletePost(postId)}>delete</button>
 
                         <button onClick={() => navigate(`/postz/${postId}/edit`)}>Edit</button>
