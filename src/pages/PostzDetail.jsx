@@ -57,9 +57,9 @@ const PostzDetail = (props) => {
 
 
     return (
-        <main>
+        <main className='detailPage'>
 
-            <article>
+            <article className='detailCard'>
                 <h2 className='PostTitle card-title text-primary fw-bold'>{postz.title}</h2>
                 <p className="postz-author">Posted by {postz.author?.username || 'Unknown user'}</p>
                 <p className="postzText">{postz.text}</p>

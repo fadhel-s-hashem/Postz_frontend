@@ -53,6 +53,7 @@ nav {
   background-color: var(--color-surface);
   position: sticky;
   top: 0;
+  z-index: 1000;
   border-bottom: rgb(187, 194, 201) solid 1px;
   padding: 1px;
 }
@@ -187,19 +188,26 @@ background: linear-gradient(135deg, #0d6efd 0%, #20c997 100%);
 }
 
 .postzCard{
-  max-width: 700px;
+  max-width: 1000px;
   padding-right: 25px;
   padding-left: 25px;
 }
 
-article {
+.detailPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.detailCard {
   background-color: var(--color-surface);
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 1.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   margin-bottom: 2rem;
-  width: 100%;
+  width: 80%;
 }
 
 .categoryImages{
@@ -276,6 +284,7 @@ article {
   border-radius: 12px;
   padding: 1.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  width: 80%;
 }
 
 .commentSection h3 {
